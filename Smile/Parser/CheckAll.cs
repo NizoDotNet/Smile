@@ -2,7 +2,7 @@
 
 public class CheckAll
 {
-    private Parser parser = new();
+    private Parser parser = new(new ConsoleLogger());
     private string URL = "http://tnis.adau.edu.az/forparents/marks.php?studentid=";
     private string subject = "ARK və hüququn əsasları";
     private HashSet<string> _s = new();
@@ -12,7 +12,7 @@ public class CheckAll
         while(startId <= endId)
         {
             Console.WriteLine($"Parsing {startId}");
-            var p = parser.ParseSubjectNameONly(URL, startId);
+            var p = parser.ParseSubjectNameOnly(URL, startId);
             if (CheckForSubject.Check(p.Item1, subject)
                 && !_s.Contains(p.Item2))
             {
